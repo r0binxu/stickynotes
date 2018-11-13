@@ -17,8 +17,6 @@ var savedNotes = JSON.parse(localStorage.getItem('myNotes'));
 
 if (savedNotes !== null){
 
-    console.log('savednotes: ' + JSON.stringify(savedNotes));
-
     storeArr = savedNotes;
     renderList();
 
@@ -48,7 +46,7 @@ function addnote(){
 
     storeArr.push(noteObj);
 
-    console.log(storeArr);
+    // console.log(storeArr);
 
      document.getElementById('title').value = ""
      document.getElementById('note').value = ""
@@ -73,13 +71,11 @@ function renderList(){
     var x = "";
 
 
-    // if (storeArrLen !== 0 ){
 
         for (i in storeArr) {
             x += "<div class='note'" + "id='note" + i + "'"  + ">" +
              "<h3>" + storeArr[i].title + "</h3>" +
               "<p>" + storeArr[i].note + "</p>" + 
-            //   "<button onClick='editNote(i)'>edit</button>" +
               "<button id='editBtn' onClick='editNote(" + i + ")'>edit</button>" +
               "<button id='delBtn' onClick='removeNote(" + i + ")'>delete</button>" +
 
@@ -90,9 +86,7 @@ function renderList(){
         document.getElementById("notelist").innerHTML = x;
 
     
-    // } else {
-    //     console.log('store zero');
-    // }
+ 
 }
 
 
@@ -106,20 +100,17 @@ function editNote(i){
     var eleId = 'note' + i;
     editedIndex = i;
 
-    // var editTitle = storeArr[i].title;
-    // var editNote = storeArr[i].note;
+   
 
      editedTitle = storeArr[i].title;
      editedNote = storeArr[i].note;
 
-    // document.getElementById('titleEdit').value = editTitle;
-    // document.getElementById('noteEdit').value = editNote;
+   
     document.getElementById('titleEdit').value = editedTitle;
     document.getElementById('noteEdit').value = editedNote;
 
 
 
-    // console.log(editTitle);
 
 }
 
@@ -203,7 +194,6 @@ function deleteAllNotes(){
 
     if(storeArrLen > 0) {
 
-    // localStorage.setItem("myNotes", JSON.stringify(storeArr));
     localStorage.clear();
 
     document.getElementById('storemsg').innerHTML = "All Deleted!"

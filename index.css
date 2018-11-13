@@ -28,7 +28,6 @@ li a {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    /* margin-top: 5%; */
 
 }
 .addnote {
@@ -38,16 +37,11 @@ li a {
 }
 
 
-/* .notelist-flex {
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-} */
+
 
 #notelist {
     display: flex;
 
-    /* border-style: solid; */
     justify-content: center;
     flex-wrap: wrap;
 
@@ -57,7 +51,7 @@ li a {
 .note {
     margin: 15px;
     border-style: solid;
-    width: 100px;
+    width: 300px;
     text-align: center;
     font-size: 15px;
 

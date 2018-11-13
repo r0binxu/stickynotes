@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sticky Notes</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+
+</head>
+<body>
+
+
+            <ul>
+                 
+                    <li><a >Filter</a></li>
+                    <li><a class="search-container">
+                            <form>
+                              <input id="filterInput" type="text" placeholder=" Stickynotes title / note" name="search" onkeyup="filterList()">
+                            </form>
+                        </a></li>
+            </ul>
+
+            <br>
+
+            <div class="addnote-flex">
+                <div class="addnote">
+                    <h2>Add Your Notes Here!</h2>
+                    <h4>Title: <input id="title" type="text" placeholder="title here" name="title" oninput="titleInput()"></h4>
+
+                   
+                    <h4>Note:</h4>
+                    <textarea rows="4" cols="50" id="note" type="text" name="note" placeholder="note here" oninput="noteInput()"></textarea>
+                    <br>
+
+                    <button onclick="addnote()">Add Note</button><br><br>
+
+                    <button onclick="saveAllNotes()"><b>Save Notes</b></button>  <button onclick="deleteAllNotes()"><b>Delete All Notes</b></button> 
+
+                    
+                    <div id="storemsg"></div>
+
+
+                 
+
+
+                </div>
+
+            </div>
+
+
+                <div id="notelist"></div>
+
+
+            <div id="id01" class="Modal">
+                   
+                        <span onclick="document.getElementById('id01').style.display='none'" 
+                        >&times;</span>
+
+                        <h4>Title: <input id="titleEdit" type="text" placeholder="title here" name="title" oninput="editTitleInput()"></h4>
+
+                        <h4>Note:  <input id="noteEdit" type="text" name="note" placeholder="note here" oninput="editNoteInput()"></h4><br>
+
+                    <button onclick="saveEdit()">Save</button>
+                    
+            </div>
+
+    
+
+<script src="index.js"></script>
+
+</body>
+</html>

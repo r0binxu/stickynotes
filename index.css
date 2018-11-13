@@ -1,0 +1,74 @@
+
+
+    
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+
+.addnote-flex {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+.addnote {
+    border-style: solid;
+    padding: 5%;
+
+}
+
+
+
+
+#notelist {
+    display: flex;
+
+    justify-content: center;
+    flex-wrap: wrap;
+
+
+}
+
+.note {
+    margin: 15px;
+    border-style: solid;
+    width: 300px;
+    text-align: center;
+    font-size: 15px;
+
+
+}
+
+.Modal {
+    display: none;
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    width: 70%;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px black;
+    padding: 16px;
+    left: 15%;
+    top: 30%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+}

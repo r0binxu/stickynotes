@@ -1,19 +1,18 @@
 
+{
+let title = "";  
+let note = ""; 
 
-var title = "";  
-var note = ""; 
+let editedIndex;
+let editedTitle;
+let editedNote;
 
-var editedIndex;
-var editedTitle;
-var editedNote;
+let storeArr = [];
 
-var storeArr = [];
+let storeArrLen;
 
-var storeArrLen;
 
-var stickynoteObj;
-
-var savedNotes = JSON.parse(localStorage.getItem('myNotes'));
+let savedNotes = JSON.parse(localStorage.getItem('myNotes'));
 
 if (savedNotes !== null){
 
@@ -22,6 +21,7 @@ if (savedNotes !== null){
 
 }
 
+document.getElementById('title').addEventListener("keyup", titleInput);
 
 
 function titleInput(){
@@ -39,7 +39,7 @@ function addnote(){
     console.log(title);
     console.log(note);
 
-    var noteObj = {
+    let noteObj = {
         title: title,
         note: note
     }
@@ -68,7 +68,7 @@ function renderList(){
 
 
     storeArrLen = storeArr.length;
-    var x = "";
+    let x = "";
 
 
 
@@ -97,7 +97,7 @@ function editNote(i){
 
     document.getElementById('id01').style.display='block';
 
-    var eleId = 'note' + i;
+    let eleId = 'note' + i;
     editedIndex = i;
 
    
@@ -127,7 +127,7 @@ function editNoteInput(){
 
 function saveEdit() {
 
-    var editedObj = {
+    let editedObj = {
         title: editedTitle,
         note: editedNote
     }
@@ -143,7 +143,7 @@ function saveEdit() {
 
 function removeNote(i){
 
-    var delItem = i;
+    let delItem = i;
 
     storeArr.splice(delItem, 1);
 
@@ -158,15 +158,15 @@ function removeNote(i){
 
 function filterList(){
 
-    var filterInput = document.getElementById('filterInput').value.toUpperCase();
+    let filterInput = document.getElementById('filterInput').value.toUpperCase();
 
-    var notelist = document.getElementById('notelist');
-    var note = notelist.getElementsByClassName('note');
+    let notelist = document.getElementById('notelist');
+    let note = notelist.getElementsByClassName('note');
 
     for (i = 0; i < note.length; i++) {
        
-        var itemNote = note[i].getElementsByTagName("h3")[0];
-        var itemTitle = note[i].getElementsByTagName("p")[0];
+        let itemNote = note[i].getElementsByTagName("h3")[0];
+        let itemTitle = note[i].getElementsByTagName("p")[0];
         if (itemTitle || itemNote) {
           if (itemTitle.innerHTML.toUpperCase().indexOf(filterInput) > -1 || itemNote.innerHTML.toUpperCase().indexOf(filterInput) > -1) {
             note[i].style.display = "";
@@ -207,5 +207,5 @@ function deleteAllNotes(){
 
 
 
-
+}
 

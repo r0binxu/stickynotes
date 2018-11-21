@@ -1,41 +1,44 @@
 
 {
+    
 let title = "";  
 let note = ""; 
-
 let editedIndex;
 let editedTitle;
 let editedNote;
-
 let storeArr = [];
-
 let storeArrLen;
-
-
 let savedNotes = JSON.parse(localStorage.getItem('myNotes'));
 
-if (savedNotes !== null){
-
+if (savedNotes !== null) {
     storeArr = savedNotes;
     renderList();
-
 }
 
+document.getElementById('filterInput').addEventListener("keyup", filterList);
 document.getElementById('title').addEventListener("keyup", titleInput);
+document.getElementById('note').addEventListener("keyup", noteInput);
+document.getElementById('submitnote').addEventListener("click", addnote);
+document.getElementById('saveBtn').addEventListener("click", saveAllNotes);
+document.getElementById('delBtn').addEventListener("click", deleteAllNotes);
+document.getElementById('cross').addEventListener("click", closeModal);
+document.getElementById('titleEdit').addEventListener("input", editTitleInput);
+document.getElementById('noteEdit').addEventListener("input", editNoteInput);
+document.getElementById('saveEdit').addEventListener("click", saveEdit);
 
 
-function titleInput(){
+
+function titleInput() {
     title = document.getElementById('title').value;
 }
 
 
-function noteInput(){
+function noteInput() {
     note = document.getElementById('note').value;
 }
 
 
-
-function addnote(){
+function addnote() {
     console.log(title);
     console.log(note);
 
@@ -46,31 +49,21 @@ function addnote(){
 
     storeArr.push(noteObj);
 
-    // console.log(storeArr);
-
      document.getElementById('title').value = ""
      document.getElementById('note').value = ""
      title = "";
      note = "";
 
-   
 
      renderList();
-
 
 }
 
 
-
-
-
-function renderList(){
-
+function renderList() {
 
     storeArrLen = storeArr.length;
     let x = "";
-
-
 
         for (i in storeArr) {
             x += "<div class='note'" + "id='note" + i + "'"  + ">" +
@@ -85,13 +78,11 @@ function renderList(){
 
         document.getElementById("notelist").innerHTML = x;
 
-    
- 
 }
 
 
 
-function editNote(i){
+function editNote(i) { 
     console.log(i);
     console.log('triggered');
 
@@ -109,18 +100,21 @@ function editNote(i){
     document.getElementById('titleEdit').value = editedTitle;
     document.getElementById('noteEdit').value = editedNote;
 
-
-
-
 }
 
-function editTitleInput(){
+
+function closeModal() {
+    document.getElementById('id01').style.display='none';
+}
+
+
+function editTitleInput() {
 
     editedTitle = document.getElementById('titleEdit').value;
 
 }
 
-function editNoteInput(){
+function editNoteInput() {
     editedNote =  document.getElementById('noteEdit').value;
 }
 
@@ -138,7 +132,6 @@ function saveEdit() {
     localStorage.setItem("myNotes", JSON.stringify(storeArr));
     renderList();
 
-
 }
 
 function removeNote(i){
@@ -149,17 +142,14 @@ function removeNote(i){
 
     localStorage.setItem("myNotes", JSON.stringify(storeArr));
 
-
     renderList();
-
 
 }
 
 
-function filterList(){
+function filterList() {
 
     let filterInput = document.getElementById('filterInput').value.toUpperCase();
-
     let notelist = document.getElementById('notelist');
     let note = notelist.getElementsByClassName('note');
 
@@ -175,11 +165,10 @@ function filterList(){
           }
         } 
       }
-
 }
 
 
-function saveAllNotes(){
+function saveAllNotes() {
 
     if(storeArrLen > 0) {
 
@@ -190,7 +179,7 @@ function saveAllNotes(){
 
 }
 
-function deleteAllNotes(){
+function deleteAllNotes() {
 
     if(storeArrLen > 0) {
 
@@ -201,7 +190,6 @@ function deleteAllNotes(){
     document.getElementById("notelist").innerHTML = "";
 
     }
-
 
 }
 

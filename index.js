@@ -1,6 +1,5 @@
 
 {
-    
 let title = "";  
 let note = ""; 
 let editedIndex;
@@ -32,11 +31,9 @@ function titleInput() {
     title = document.getElementById('title').value;
 }
 
-
 function noteInput() {
     note = document.getElementById('note').value;
 }
-
 
 function addnote() {
     console.log(title);
@@ -59,7 +56,6 @@ function addnote() {
 
 }
 
-
 function renderList() {
 
     storeArrLen = storeArr.length;
@@ -80,8 +76,6 @@ function renderList() {
 
 }
 
-
-
 function editNote(i) { 
     console.log(i);
     console.log('triggered');
@@ -91,27 +85,19 @@ function editNote(i) {
     let eleId = 'note' + i;
     editedIndex = i;
 
-   
+    editedTitle = storeArr[i].title;
+    editedNote = storeArr[i].note;
 
-     editedTitle = storeArr[i].title;
-     editedNote = storeArr[i].note;
-
-   
     document.getElementById('titleEdit').value = editedTitle;
     document.getElementById('noteEdit').value = editedNote;
-
 }
-
 
 function closeModal() {
     document.getElementById('id01').style.display='none';
 }
 
-
 function editTitleInput() {
-
     editedTitle = document.getElementById('titleEdit').value;
-
 }
 
 function editNoteInput() {
@@ -131,7 +117,6 @@ function saveEdit() {
 
     localStorage.setItem("myNotes", JSON.stringify(storeArr));
     renderList();
-
 }
 
 function removeNote(i){
@@ -143,9 +128,7 @@ function removeNote(i){
     localStorage.setItem("myNotes", JSON.stringify(storeArr));
 
     renderList();
-
 }
-
 
 function filterList() {
 
@@ -167,7 +150,6 @@ function filterList() {
       }
 }
 
-
 function saveAllNotes() {
 
     if(storeArrLen > 0) {
@@ -176,7 +158,6 @@ function saveAllNotes() {
 
     document.getElementById('storemsg').innerHTML = "Saved!"
     }
-
 }
 
 function deleteAllNotes() {
@@ -188,12 +169,7 @@ function deleteAllNotes() {
     document.getElementById('storemsg').innerHTML = "All Deleted!"
 
     document.getElementById("notelist").innerHTML = "";
-
     }
-
 }
-
-
-
 }
 

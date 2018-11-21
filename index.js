@@ -1,76 +1,69 @@
 
+{
+    
+let title = "";  
+let note = ""; 
+let editedIndex;
+let editedTitle;
+let editedNote;
+let storeArr = [];
+let storeArrLen;
+let savedNotes = JSON.parse(localStorage.getItem('myNotes'));
 
-var title = "";  
-var note = ""; 
-
-var editedIndex;
-var editedTitle;
-var editedNote;
-
-var storeArr = [];
-
-var storeArrLen;
-
-var stickynoteObj;
-
-var savedNotes = JSON.parse(localStorage.getItem('myNotes'));
-
-if (savedNotes !== null){
-
+if (savedNotes !== null) {
     storeArr = savedNotes;
     renderList();
-
 }
 
+document.getElementById('filterInput').addEventListener("keyup", filterList);
+document.getElementById('title').addEventListener("keyup", titleInput);
+document.getElementById('note').addEventListener("keyup", noteInput);
+document.getElementById('submitnote').addEventListener("click", addnote);
+document.getElementById('saveBtn').addEventListener("click", saveAllNotes);
+document.getElementById('delBtn').addEventListener("click", deleteAllNotes);
+document.getElementById('cross').addEventListener("click", closeModal);
+document.getElementById('titleEdit').addEventListener("input", editTitleInput);
+document.getElementById('noteEdit').addEventListener("input", editNoteInput);
+document.getElementById('saveEdit').addEventListener("click", saveEdit);
 
 
-function titleInput(){
+
+function titleInput() {
     title = document.getElementById('title').value;
 }
 
 
-function noteInput(){
+function noteInput() {
     note = document.getElementById('note').value;
 }
 
 
-
-function addnote(){
+function addnote() {
     console.log(title);
     console.log(note);
 
-    var noteObj = {
+    let noteObj = {
         title: title,
         note: note
     }
 
     storeArr.push(noteObj);
 
-    // console.log(storeArr);
-
      document.getElementById('title').value = ""
      document.getElementById('note').value = ""
      title = "";
      note = "";
 
-   
 
      renderList();
-
 
 }
 
 
-
-
-
-function renderList(){
-
+function renderList() {
 
     storeArrLen = storeArr.length;
-    var x = "";
-
-
+    let x = "";
 
         for (i in storeArr) {
             x += "<div class='note'" + "id='note" + i + "'"  + ">" +
@@ -85,19 +78,17 @@ function renderList(){
 
         document.getElementById("notelist").innerHTML = x;
 
-    
- 
 }
 
 
 
-function editNote(i){
+function editNote(i) { 
     console.log(i);
     console.log('triggered');
 
     document.getElementById('id01').style.display='block';
 
-    var eleId = 'note' + i;
+    let eleId = 'note' + i;
     editedIndex = i;
 
    
@@ -109,25 +100,28 @@ function editNote(i){
     document.getElementById('titleEdit').value = editedTitle;
     document.getElementById('noteEdit').value = editedNote;
 
-
-
-
 }
 
-function editTitleInput(){
+
+function closeModal() {
+    document.getElementById('id01').style.display='none';
+}
+
+
+function editTitleInput() {
 
     editedTitle = document.getElementById('titleEdit').value;
 
 }
 
-function editNoteInput(){
+function editNoteInput() {
     editedNote =  document.getElementById('noteEdit').value;
 }
 
 
 function saveEdit() {
 
-    var editedObj = {
+    let editedObj = {
         title: editedTitle,
         note: editedNote
     }
@@ -138,35 +132,31 @@ function saveEdit() {
     localStorage.setItem("myNotes", JSON.stringify(storeArr));
     renderList();
 
-
 }
 
 function removeNote(i){
 
-    var delItem = i;
+    let delItem = i;
 
     storeArr.splice(delItem, 1);
 
     localStorage.setItem("myNotes", JSON.stringify(storeArr));
 
-
     renderList();
-
 
 }
 
 
-function filterList(){
+function filterList() {
 
-    var filterInput = document.getElementById('filterInput').value.toUpperCase();
-
-    var notelist = document.getElementById('notelist');
-    var note = notelist.getElementsByClassName('note');
+    let filterInput = document.getElementById('filterInput').value.toUpperCase();
+    let notelist = document.getElementById('notelist');
+    let note = notelist.getElementsByClassName('note');
 
     for (i = 0; i < note.length; i++) {
        
-        var itemNote = note[i].getElementsByTagName("h3")[0];
-        var itemTitle = note[i].getElementsByTagName("p")[0];
+        let itemNote = note[i].getElementsByTagName("h3")[0];
+        let itemTitle = note[i].getElementsByTagName("p")[0];
         if (itemTitle || itemNote) {
           if (itemTitle.innerHTML.toUpperCase().indexOf(filterInput) > -1 || itemNote.innerHTML.toUpperCase().indexOf(filterInput) > -1) {
             note[i].style.display = "";
@@ -175,11 +165,10 @@ function filterList(){
           }
         } 
       }
-
 }
 
 
-function saveAllNotes(){
+function saveAllNotes() {
 
     if(storeArrLen > 0) {
 
@@ -190,7 +179,7 @@ function saveAllNotes(){
 
 }
 
-function deleteAllNotes(){
+function deleteAllNotes() {
 
     if(storeArrLen > 0) {
 
@@ -202,10 +191,9 @@ function deleteAllNotes(){
 
     }
 
-
 }
 
 
 
-
+}
 

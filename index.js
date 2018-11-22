@@ -25,8 +25,6 @@ document.getElementById('titleEdit').addEventListener("input", editTitleInput);
 document.getElementById('noteEdit').addEventListener("input", editNoteInput);
 document.getElementById('saveEdit').addEventListener("click", saveEdit);
 
-
-
 function titleInput() {
     title = document.getElementById('title').value;
 }
@@ -36,58 +34,41 @@ function noteInput() {
 }
 
 function addnote() {
-    console.log(title);
-    console.log(note);
-
     let noteObj = {
         title: title,
         note: note
     }
 
     storeArr.push(noteObj);
-
-     document.getElementById('title').value = ""
-     document.getElementById('note').value = ""
-     title = "";
-     note = "";
-
-
-     renderList();
-
+    document.getElementById('title').value = ""
+    document.getElementById('note').value = ""
+    title = "";
+    note = "";
+    renderList();
 }
 
 function renderList() {
-
-    storeArrLen = storeArr.length;
     let x = "";
+    storeArrLen = storeArr.length;
 
-        for (i in storeArr) {
-            x += "<div class='note'" + "id='note" + i + "'"  + ">" +
-             "<h3>" + storeArr[i].title + "</h3>" +
-              "<p>" + storeArr[i].note + "</p>" + 
-              "<button id='editBtn' onClick='editNote(" + i + ")'>edit</button>" +
-              "<button id='delBtn' onClick='removeNote(" + i + ")'>delete</button>" +
+    for (i in storeArr) {
+        x += "<div class='note'" + "id='note" + i + "'"  + ">" +
+            "<h3>" + storeArr[i].title + "</h3>" +
+            "<p>" + storeArr[i].note + "</p>" + 
+            "<button id='editBtn' onClick='editNote(" + i + ")'>edit</button>" +
+            "<button id='delBtn' onClick='removeNote(" + i + ")'>delete</button>" +
 
-              "</div>";
+            "</div>";
 
-        }
-
+    }
         document.getElementById("notelist").innerHTML = x;
-
 }
 
 function editNote(i) { 
-    console.log(i);
-    console.log('triggered');
-
     document.getElementById('id01').style.display='block';
-
-    let eleId = 'note' + i;
     editedIndex = i;
-
     editedTitle = storeArr[i].title;
     editedNote = storeArr[i].note;
-
     document.getElementById('titleEdit').value = editedTitle;
     document.getElementById('noteEdit').value = editedNote;
 }
@@ -106,7 +87,6 @@ function editNoteInput() {
 
 
 function saveEdit() {
-
     let editedObj = {
         title: editedTitle,
         note: editedNote
@@ -114,30 +94,23 @@ function saveEdit() {
 
     storeArr[editedIndex] = editedObj;
     document.getElementById('id01').style.display='none'
-
     localStorage.setItem("myNotes", JSON.stringify(storeArr));
     renderList();
 }
 
 function removeNote(i){
-
     let delItem = i;
-
     storeArr.splice(delItem, 1);
-
     localStorage.setItem("myNotes", JSON.stringify(storeArr));
-
     renderList();
 }
 
 function filterList() {
-
     let filterInput = document.getElementById('filterInput').value.toUpperCase();
     let notelist = document.getElementById('notelist');
     let note = notelist.getElementsByClassName('note');
 
     for (i = 0; i < note.length; i++) {
-       
         let itemNote = note[i].getElementsByTagName("h3")[0];
         let itemTitle = note[i].getElementsByTagName("p")[0];
         if (itemTitle || itemNote) {
@@ -151,23 +124,16 @@ function filterList() {
 }
 
 function saveAllNotes() {
-
     if(storeArrLen > 0) {
-
     localStorage.setItem("myNotes", JSON.stringify(storeArr));
-
     document.getElementById('storemsg').innerHTML = "Saved!"
     }
 }
 
 function deleteAllNotes() {
-
     if(storeArrLen > 0) {
-
     localStorage.clear();
-
     document.getElementById('storemsg').innerHTML = "All Deleted!"
-
     document.getElementById("notelist").innerHTML = "";
     }
 }
